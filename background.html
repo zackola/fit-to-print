@@ -1,0 +1,40 @@
+<script>
+
+    var toggleEnabled = function() {
+        if (toBool(localStorage["active"])) {
+            localStorage["active"] = false;
+        } else {
+            localStorage["active"] = true;
+        
+            // chrome.tabs.getSelected(null, function(tab) {
+            //   chrome.tabs.sendRequest(tab.id, true, function(response) {
+            //   });
+            // });            
+        }
+        active = toBool(localStorage["active"]);
+        var badgeText = active ? "on" : "off";
+        chrome.browserAction.setBadgeText({"text": badgeText});
+    };
+
+    var toBool = function(str) {
+       if ("false" === str)
+          return false;
+       else 
+          return true;
+    };
+
+
+    var active = toBool(localStorage["active"]) || true;
+    var badgeText = toBool(localStorage["active"]) ? "on" : "off";
+    chrome.browserAction.setBadgeText({"text": badgeText});
+
+    chrome.browserAction.onClicked.addListener(function(tab) {
+        toggleEnabled();
+    });
+
+    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+        sendResponse(active);
+    });
+    
+
+</script>
