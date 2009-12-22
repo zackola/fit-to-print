@@ -1,15 +1,15 @@
 <script>
 
     var toggleEnabled = function() {
+        // console.log("toggleEnabled current:" + localStorage["active"] + " next:" + !toBool(localStorage["active"]))
         if (toBool(localStorage["active"])) {
             localStorage["active"] = false;
         } else {
             localStorage["active"] = true;
-        
-            // chrome.tabs.getSelected(null, function(tab) {
-            //   chrome.tabs.sendRequest(tab.id, true, function(response) {
-            //   });
-            // });            
+            chrome.tabs.getSelected(null, function(tab) {
+                chrome.tabs.sendRequest(tab.id, {}, function(response) {
+                });
+            });
         }
         active = toBool(localStorage["active"]);
         var badgeText = active ? "on" : "off";
@@ -23,8 +23,7 @@
           return true;
     };
 
-
-    var active = toBool(localStorage["active"]) || true;
+    var active = toBool(localStorage["active"]);
     var badgeText = toBool(localStorage["active"]) ? "on" : "off";
     chrome.browserAction.setBadgeText({"text": badgeText});
 

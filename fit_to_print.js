@@ -19,7 +19,7 @@ var redirectTo = function() {
   }
 };
 
-// chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-//     redirectTo();
-//     sendResponse(true);
-// });
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    redirectTo();
+    sendResponse({});
+});

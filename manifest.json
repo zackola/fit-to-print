@@ -14,5 +14,6 @@
       "js": ["jquery.js", "fit_to_print.js"],
       "run_at": "document_start"
     }
-  ]
+  ],
+  "permissions": ["tabs"]
 }
