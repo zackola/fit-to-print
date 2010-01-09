@@ -7,12 +7,8 @@ var sites = {
   	'host': 'nytimes.com',
     'url_pattern': /\/\d{4}\/\d{2}\/\d{2}/i,
     'print_pattern': /pagewanted=print/i,
-    'method': function() {
-      if (hasParams(url)) {
-        to_go += '&';
-      } else {
-        to_go += '?';
-      }
+    'url_formatter': function() {
+      to_go = prepareURL(to_go);
       return to_go += this.params;
     },
     'params': 'pagewanted=print'
@@ -21,7 +17,7 @@ var sites = {
   	'host': 'thenation.com',
     'url_pattern': /\/doc\/\d+\//i,
     'print_pattern': /\/print/i,
-    'method': function() {
+    'url_formatter': function() {
   		return to_go += this.params;
   	},
     'params': '/print'
@@ -30,7 +26,7 @@ var sites = {
   	'host': 'washingtonpost.com',
     'url_pattern': /\/wp-dyn\/content\/article\//i,
     'print_pattern': /_pf\.html/i,
-    'method': function() {
+    'url_formatter': function() {
   		return to_go.replace(/\.html.*$/i, this.params)
   	},
     'params': '_pf.html'
@@ -39,7 +35,7 @@ var sites = {
   	'host': 'nypost.com',
     'url_pattern': /\/p\/news\//i,
     'print_pattern': /\/f\/print\/news\//i,
-    'method': function() {
+    'url_formatter': function() {
   		return to_go.replace(this.url_pattern, this.params)
   	},
     'params': '/f/print/news/'
@@ -48,12 +44,8 @@ var sites = {
     'host': 'boston.com',
     'url_pattern': /\/articles\//i,
     'print_pattern': /mode=PF/i,
-    'method': function() {
-      if (hasParams(url)) {
-        to_go += '&';
-      } else {
-        to_go += '?';
-      }
+    'url_formatter': function() {
+      to_go = prepareURL(to_go);
       return to_go += this.params;
     },
     'params': 'mode=PF'
@@ -69,16 +61,23 @@ chrome.extension.sendRequest(null, function(response) {
 var redirectTo = function() {
   for (s in sites) {
 	site = sites[s];
-    if (host.match(site["host"]) && url.match(site["url_pattern"]) && !url.match(site["print_pattern"])) {
-      to_go = site["method"](site["params"]);
+    if (host.match(site.host) && 
+        url.match(site.url_pattern) && 
+        !url.match(site.print_pattern)) {
+
+      to_go = site.url_formatter(site.params);
       document.location.href = to_go;
     }
   }
 };
 
+var prepareURL = function(u) {
+  return (hasParams(u) ? (u += '&') : (u += '?'));
+};
+
 var hasParams = function(u)  {
   return u.match(/\?/);
-}
+};
 
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     redirectTo();
