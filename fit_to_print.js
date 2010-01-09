@@ -61,8 +61,7 @@ chrome.extension.sendRequest(null, function(response) {
 var redirectTo = function() {
   for (s in sites) {
     site = sites[s];
-    if (host.match(site.host) && 
-        url.match(site.url_pattern) && 
+    if (host.match(site.host) && url.match(site.url_pattern) && 
         !url.match(site.print_pattern)) {
 
       to_go = site.url_formatter(site.params);
@@ -72,7 +71,7 @@ var redirectTo = function() {
 };
 
 var prepareURL = function(u) {
-  return (hasParams(u) ? (u += '&') : (u += '?'));
+  return hasParams(u) ? (u += '&') : (u += '?');
 };
 
 var hasParams = function(u)  {
