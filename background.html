@@ -1,39 +1,34 @@
 <script>
-
-    var toggleEnabled = function() {
-        // console.log("toggleEnabled current:" + localStorage["active"] + " next:" + !toBool(localStorage["active"]))
-        if (toBool(localStorage["active"])) {
-            localStorage["active"] = false;
-        } else {
-            localStorage["active"] = true;
-            chrome.tabs.getSelected(null, function(tab) {
-                chrome.tabs.sendRequest(tab.id, {}, function(response) {
-                });
-            });
-        }
-        active = toBool(localStorage["active"]);
-        var badgeText = active ? "on" : "off";
-        chrome.browserAction.setBadgeText({"text": badgeText});
-    };
-
-    var toBool = function(str) {
-       if ("false" === str)
-          return false;
-       else 
-          return true;
-    };
-
-    var active = toBool(localStorage["active"]);
-    var badgeText = toBool(localStorage["active"]) ? "on" : "off";
+  var toggleEnabled = function() {
+    if (toBool(localStorage["active"])) {
+      localStorage["active"] = false;
+    } else {
+      localStorage["active"] = true;
+      chrome.tabs.getSelected(null, function(tab) {
+        chrome.tabs.sendRequest(tab.id, {}, function(response) {});
+      });
+    }
+    active = toBool(localStorage["active"]);
+    var badgeText = active ? "on" : "off";
     chrome.browserAction.setBadgeText({"text": badgeText});
+  };
 
-    chrome.browserAction.onClicked.addListener(function(tab) {
-        toggleEnabled();
-    });
+  var toBool = function(str) {
+   if ("false" === str)
+    return false;
+   else 
+    return true;
+  };
 
-    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-        sendResponse(active);
-    });
-    
+  var active = toBool(localStorage["active"]);
+  var badgeText = toBool(localStorage["active"]) ? "on" : "off";
+  chrome.browserAction.setBadgeText({"text": badgeText});
 
+  chrome.browserAction.onClicked.addListener(function(tab) {
+    toggleEnabled();
+  });
+
+  chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    sendResponse(active);
+  });
 </script>
