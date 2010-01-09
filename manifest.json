@@ -5,20 +5,20 @@
   "description": "Automatically redirect to print pages on news sites, like nytimes.com, boston.com, thenation.com, washingtonpost.com.",
   "background_page": "background.html",
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_title": "...Fit to Print"
+  "default_icon": "icon.png",
+  "default_title": "...Fit to Print"
   },  
   "content_scripts": [
     {
-      "matches": [
-		"http://*.nytimes.com/*", 
-		"http://www.thenation.com/*",
-		"http://*.washingtonpost.com/*",
-		"http://*.nypost.com/*",
-		"http://*.boston.com/*"
-	   ],
-      "js": ["jquery.js", "fit_to_print.js"],
-      "run_at": "document_start"
+	    "matches": [
+				"http://*.nytimes.com/*", 
+				"http://www.thenation.com/*",
+				"http://*.washingtonpost.com/*",
+				"http://*.nypost.com/*",
+				"http://*.boston.com/*"
+		   ],
+	    "js": ["jquery.js", "fit_to_print.js"],
+	    "run_at": "document_start"
     }
   ],
   "permissions": ["tabs"]
