@@ -1,8 +1,8 @@
 {
   "name": "...Fit To Print",
-  "version": "0.2",
+  "version": "0.3",
   "icons": { "128": "icon.png" },
-  "description": "Automatically redirect to print pages on news sites, like nytimes.com, boston.com, thenation.com, washingtonpost.com.",
+  "description": "Automatically redirect to print pages on news sites, like nytimes.com, boston.com, thenation.com, washingtonpost.com, alternet.org.",
   "background_page": "background.html",
   "browser_action": {
   "default_icon": "icon.png",
@@ -15,7 +15,8 @@
 				"http://www.thenation.com/*",
 				"http://*.washingtonpost.com/*",
 				"http://*.nypost.com/*",
-				"http://*.boston.com/*"
+				"http://*.boston.com/*",
+				"http://*.alternet.org/*"
 		   ],
 	    "js": ["jquery.js", "fit_to_print.js"],
 	    "run_at": "document_start"

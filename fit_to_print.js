@@ -49,6 +49,17 @@ var sites = {
       return to_go += this.params;
     },
     'params': 'mode=PF'
+  },
+  'alternet.org': {
+    'host': 'www.alternet.org',
+    'url_pattern': /\/news\/\d+/i,
+    'print_pattern': /module\/printversion\//i,
+    'url_formatter': function() {
+      article_id = to_go.match(/\/\d+\//);
+      to_go = 'http://' + this.host + this.params + article_id;
+      return to_go;
+    },
+    'params': '/module/printversion/'
   }
 };
 
