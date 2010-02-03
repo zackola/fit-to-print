@@ -52,7 +52,7 @@ var sites = {
   },
   'alternet.org': {
     'host': 'www.alternet.org',
-    'url_pattern': /\/news\/\d+/i,
+    'url_pattern': /\/.*?\/\d+/i,
     'print_pattern': /module\/printversion\//i,
     'url_formatter': function() {
       article_id = to_go.match(/\/\d+\//);
