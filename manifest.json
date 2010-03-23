@@ -2,7 +2,7 @@
   "name": "...Fit To Print",
   "version": "0.5",
   "icons": { "128": "icon.png" },
-  "description": "Automatically redirect to print pages on news sites, like nytimes.com, boston.com, thenation.com, washingtonpost.com, alternet.org, crainsnewyork.com, newyorker.com, slate.com, and technologyreview.com.",
+  "description": "Automatically redirect to print pages on news sites, like nytimes, boston, thenation, washingtonpost, newyorker, slate and more.",
   "background_page": "background.html",
   "browser_action": {
   "default_icon": "icon.png",
