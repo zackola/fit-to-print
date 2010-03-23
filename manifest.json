@@ -11,14 +11,16 @@
   "content_scripts": [
     {
 	    "matches": [
-				"http://*.nytimes.com/*", 
+				"http://*.nytimes.com/*",
+				"http://*.blogs.nytimes.com/*",
 				"http://www.thenation.com/*",
 				"http://*.washingtonpost.com/*",
 				"http://*.nypost.com/*",
 				"http://*.boston.com/*",
-				"http://*.alternet.org/*"
+				"http://*.alternet.org/*",
+				"http://*.crainsnewyork.com/*"
 		   ],
-	    "js": ["jquery.js", "fit_to_print.js"],
+	    "js": ["fit_to_print.js"],
 	    "run_at": "document_start"
     }
   ],

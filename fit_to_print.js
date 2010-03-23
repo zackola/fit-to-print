@@ -11,7 +11,7 @@ var sites = {
       to_go = prepareURL(to_go);
       return to_go += this.params;
     },
-    'params': 'pagewanted=print'
+    'params': 'pagewanted=print&pagemode=print'
   },
   'thenation.com': {
     'host': 'thenation.com',
@@ -60,6 +60,16 @@ var sites = {
       return to_go;
     },
     'params': '/module/printversion/'
+  }
+  'crainsnewyork.com': {
+    'host': 'crainsnewyork.com',
+    'url_pattern': /\/article\//i,
+    'print_pattern': /template=printart/i,
+    'url_formatter': function() {
+      to_go = prepareURL(to_go);
+      return to_go += this.params;
+    },
+    'params': 'template=printart'
   }
 };
 
