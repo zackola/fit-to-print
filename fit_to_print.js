@@ -60,7 +60,7 @@ var sites = {
       return to_go;
     },
     'params': '/module/printversion/'
-  }
+  },
   'crainsnewyork.com': {
     'host': 'crainsnewyork.com',
     'url_pattern': /\/article\//i,
@@ -70,6 +70,38 @@ var sites = {
       return to_go += this.params;
     },
     'params': 'template=printart'
+  },
+  'newyorker.com': {
+    'host': 'www.newyorker.com',
+    'url_pattern': /\/\d{4}\/\d{2}\//i,
+    'print_pattern': /printable=true/i,
+    'url_formatter': function() {
+      to_go = prepareURL(to_go);
+      return to_go += this.params;
+    },
+    'params': 'printable=true&currentPage=all'
+  },
+  'technologyreview.com': {
+    'host': 'technologyreview.com',
+    'url_pattern': /\/\d+\//i,
+    'print_pattern': /printer_friendly_article.aspx/i,
+    'url_formatter': function() {
+      article_id = to_go.match(/\d+/);
+      to_go = 'http://' + this.host + this.params + article_id;
+      return to_go;
+    },
+    'params': '/printer_friendly_article.aspx?id='
+  },
+  'slate.com': {
+    'host': 'slate.com',
+    'url_pattern': /id\/\d+\//i,
+    'print_pattern': /action=print/i,
+    'url_formatter': function() {
+      article_id = to_go.match(/\d+/);
+      to_go = 'http://' + this.host + this.params + article_id;
+      return to_go;
+    },
+    'params': '/toolbar.aspx?action=print&id='
   }
 };
 

@@ -18,7 +18,10 @@
 				"http://*.nypost.com/*",
 				"http://*.boston.com/*",
 				"http://*.alternet.org/*",
-				"http://*.crainsnewyork.com/*"
+				"http://*.crainsnewyork.com/*",
+				"http://*.newyorker.com/*",
+				"http://*.technologyreview.com/*",
+				"http://*.slate.com/*"
 		   ],
 	    "js": ["fit_to_print.js"],
 	    "run_at": "document_start"
