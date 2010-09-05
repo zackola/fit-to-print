@@ -1,6 +1,6 @@
 {
   "name": "...Fit To Print",
-  "version": "0.5",
+  "version": "0.6",
   "icons": { "128": "icon.png" },
   "description": "Automatically redirect to print pages on news sites, like nytimes, boston, thenation, washingtonpost, newyorker, slate and more.",
   "background_page": "background.html",
