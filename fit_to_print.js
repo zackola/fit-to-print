@@ -102,6 +102,17 @@ var sites = {
       return to_go;
     },
     'params': '/toolbar.aspx?action=print&id='
+  },
+  'abcnews.go.com': {
+    'host': 'abcnews.go.com',
+    'url_pattern': /story\?id=\d+/i,
+    'print_pattern': /\/print/i,
+    'url_formatter': function() {
+      article_id = to_go.match(/\d+/);
+      to_go = 'http://' + this.host + this.params + article_id;
+      return to_go;
+    },
+    'params': '/print?id='
   }
 };
 

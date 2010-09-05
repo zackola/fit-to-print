@@ -21,7 +21,8 @@
 				"http://*.crainsnewyork.com/*",
 				"http://*.newyorker.com/*",
 				"http://*.technologyreview.com/*",
-				"http://*.slate.com/*"
+				"http://*.slate.com/*",
+				"http://abcnews.go.com/*"
 		   ],
 	    "js": ["fit_to_print.js"],
 	    "run_at": "document_start"
